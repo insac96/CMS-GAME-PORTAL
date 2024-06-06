@@ -15,7 +15,9 @@
     arrows
     ref="carouselRef"
   >
-    <UiImg :src="item" class="w-full" ratio="16 / 9" />
+    <UiFlex class="w-full bg-gray-100 dark:bg-gray-900 overflow-hidden" justify="center" style="aspect-ratio: 16 / 9">
+      <UiImg :src="item" h="100%" />
+    </UiFlex>
   </UCarousel>
 </template>
 

@@ -7,12 +7,17 @@ export default defineEventHandler(async (event) => {
 
     const gameData = await DB.Game
     .findOne({ _id: game })
-    .select('download') as IDBGame
+    .select('download play') as IDBGame
 
     if(!gameData) throw 'Trò chơi không tồn tại'
 
     // @ts-expect-error
     if(!gameData.download[type]) throw 'Chúng tôi đang cập nhật link tải, vui lòng quay lại sau'
+
+    gameData.play = gameData.play + 1
+
+    // @ts-expect-error
+    await gameData.save()
 
     // @ts-expect-error
     return res(event, { result: gameData.download[type] })

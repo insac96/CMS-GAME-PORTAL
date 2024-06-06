@@ -57,8 +57,9 @@
           </UiFlex>
 
           <!--Payment-->
-          <UiFlex justify="center">
-            <ServicePaymentBtn class="w-full" :game="game" />
+          <UiFlex type="col" justify="center">
+            <ServicePaymentBtn class="w-full mb-2" :game="game" />
+            <UiText align="center" color="red" size="xs">Vui lòng không nạp trong trò chơi</UiText>
           </UiFlex>
         </div>
       </div>

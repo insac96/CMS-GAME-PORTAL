@@ -19,7 +19,7 @@ export default defineAppConfig({
       rounded: 'rounded-3xl',
       color: {
         gray: {
-          solid: 'ring-0'
+          solid: 'ring-0 bg-gray-100'
         }
       }
     },
@@ -27,6 +27,8 @@ export default defineAppConfig({
     card: {
       base: 'relative overflow-y-auto',
       rounded: 'rounded-3xl',
+      ring: 'ring-0 dark:ring-1',
+      shadow: 'shadow-lg',
       body: {
         padding: 'px-4 py-4 sm:p-4'
       },
@@ -47,7 +49,7 @@ export default defineAppConfig({
       rounded: 'rounded-3xl',
       color: {
         gray: {
-          outline: 'ring-0'
+          outline: 'ring-0 bg-gray-100'
         }
       }
     },
@@ -117,7 +119,7 @@ export default defineAppConfig({
       rounded: 'rounded-3xl',
       color: {
         gray: {
-          outline: 'ring-0'
+          outline: 'ring-0 bg-gray-100'
         }
       }
     },
@@ -129,7 +131,7 @@ export default defineAppConfig({
       rounded: 'rounded-3xl',
       color: {
         gray: {
-          outline: 'ring-0'
+          outline: 'ring-0 bg-gray-100'
         }
       }
     }

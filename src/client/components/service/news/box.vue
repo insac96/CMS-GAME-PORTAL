@@ -1,5 +1,5 @@
 <template>
-  <UCard v-if="news" class="BoxNews shadow-lg" :ui="{
+  <UCard v-if="news" class="BoxNews" :ui="{
     body: { padding: 'p-0 sm:p-0' },
     footer: { padding: 'pb-2 sm:pb-2 pt-0 sm:pt-0', base: 'border-none' }
   }">

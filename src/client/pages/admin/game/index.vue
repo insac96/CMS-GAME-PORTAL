@@ -318,7 +318,7 @@ const actions = (row) => [
   [{
     label: 'Xem trực tiếp',
     icon: 'i-bx-link-external',
-    click: () => window.open(`/main/game/${row._id}`, '_blank')
+    click: () => window.open(`/game/${row.key}`, '_blank')
   }],
   [{
     label: 'Sửa thông tin',

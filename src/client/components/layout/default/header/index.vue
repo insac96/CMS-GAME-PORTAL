@@ -10,7 +10,9 @@
       </UiFlex>
 
       <!-- Right -->
-      <UiFlex>
+      <UiFlex class="gap-1">
+        <!-- Theme -->
+        <UiThemeMode />
         <!-- Auth -->
         <Auth />
       </UiFlex>

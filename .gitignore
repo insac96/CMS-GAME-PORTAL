@@ -11,4 +11,7 @@ node_modules
 package-lock.json
 dist/server
 
+image-*
+excel-*
+
 
