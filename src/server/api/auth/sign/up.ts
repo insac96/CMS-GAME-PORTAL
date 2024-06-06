@@ -5,7 +5,7 @@ import type { IDBConfig, IDBUser } from "~~/types"
 export default defineEventHandler(async (event) => {
   try {
     const runtimeConfig = useRuntimeConfig()
-    const { username, password, email, phone } = await readBody(event)
+    const { username, password, confirm } = await readBody(event)
 
     if (!username) throw 'Vui lòng nhập tài khoản'
     if (username.length < 6 || username.length > 15) throw 'Tài khoản trong khoảng 6-15 ký tự'
@@ -16,36 +16,24 @@ export default defineEventHandler(async (event) => {
       || !!username.includes('robot')
     ) throw 'Tài khoản không hợp lệ'
 
-    if (!email) throw 'Vui lòng nhập Email'
-    if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) throw 'Định dạng Email không đúng'
-
-    if (!phone) throw 'Vui lòng nhập số điện thoại'
-    if (!phone.match(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g)) throw 'Định dạng số điện thoại không đúng'
-
     if (!password) throw 'Vui lòng nhập mật khẩu'
     if (password.length < 6 || password.length > 15) throw 'Mật khẩu trong khoảng 6-15 ký tự'
     if (!!password.match(/\s/g)) throw 'Mật khẩu không có khoảng cách'
+
+    if (!confirm) throw 'Vui lòng nhập lại mật khẩu'
+    if (confirm != password) throw 'Hai mật khẩu không trùng khớp'
 
     // Config
     const config = await DB.Config.findOne({}).select('image') as IDBConfig
     if(!config) throw 'Không tìm thấy cấu hình trang'
 
     // Check User
-    const userCheck = await DB.User
-    .findOne({ 
-      $or: [
-        { username: username },
-        { phone: phone },
-        { email: email }
-      ]
-    })
-    .select('username email phone') as IDBUser
-    
-    if(!!userCheck){
-      if(userCheck.username == username) throw 'Tài khoản đã tồn tại'
-      if(userCheck.phone == phone) throw 'Số điện thoại đã tồn tại'
-      if(userCheck.email == email) throw 'Địa chỉ Email đã tồn tại'
-    }
+    const userCheck = await DB.User.findOne({ username: username }).select('_id') as IDBUser
+    if(!!userCheck) throw 'Tài khoản đã tồn tại'
+
+    // Reg Game
+    const checkReg = await regGame(username, password, 'sy12306')
+    if(!checkReg) throw 'Đăng ký tài khoản game không thành công'
 
     // Check IP
     const IP = getRequestIP(event, { xForwardedFor: true })
@@ -54,13 +42,8 @@ export default defineEventHandler(async (event) => {
     const user = await DB.User.create({
       username: username,
       password: md5(password),
-      phone: phone,
-      email: email,
       avatar: config.image.app || '/images/user/default.png',
     })
-
-    // Reg Game
-    const checkReg = await regGame(username, password, 'sy12306')
 
     // Make Token And Cookie
     const token = jwt.sign({
