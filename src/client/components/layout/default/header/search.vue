@@ -1,6 +1,6 @@
 <template>
   <UiFlex>
-    <UInput icon="i-bx-search" size="sm" placeholder="Tìm kiếm..." readonly @click="modal = true" class="md:max-w-full max-w-[110px]"/>
+    <UInput icon="i-bx-search" size="sm" placeholder="Tìm kiếm..." readonly @click="modal = true" class="md:max-w-full max-w-[130px]"/>
   </UiFlex>
 
   <UModal v-model="modal" :ui="{ width: 'lg:max-w-2xl md:max-w-2xl sm:max-w-2xl' }">

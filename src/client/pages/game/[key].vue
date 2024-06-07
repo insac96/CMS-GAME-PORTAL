@@ -95,6 +95,8 @@ const downloading = ref({
   android: false,
   ios: false
 })
+const downloadLink = ref(undefined)
+watch(() => downloadLink.value, (val) => window.open(val, '_blank'))
 
 // Meta Seo
 useSeoMeta({
@@ -129,10 +131,7 @@ const downloadAction = async (type) => {
     })
 
     downloading.value[type] = false
-
-    setTimeout(() => {
-      window.open(data, '_blank')
-    }, 100)
+    downloadLink.value = data
   }
   catch (e){
     downloading.value[type] = false
