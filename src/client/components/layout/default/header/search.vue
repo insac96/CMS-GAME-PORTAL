@@ -20,15 +20,14 @@
         <UiText align="center" size="sm" color="gray" v-if="!!query && !!loading">Đang tìm kiếm...</UiText>
       </UiFlex>
 
-      <UiFlex type="col" v-else>
+      <UiFlex type="col" class="gap-3" v-else>
         <NuxtLink class="w-full" v-for="item in list" :key="item._id" :to="`/game/${item.key}`" target="_blank">
           <UiFlex class="gap-1">
-            <UiText size="sm" weight="semibold">【{{ item.short_name }}】</UiText>
-            <UiText color="gray" size="sm">{{ item.name }}</UiText>
+            <UiText size="sm" class="mr-4">{{ item.name }}</UiText>
 
-            <UiFlex class="gap-0.5 ml-auto" wrap>
-              <UBadge color="gray" size="xs">{{ item.platform.name }}</UBadge>
-              <UBadge color="gray" size="xs">{{ item.category.name }}</UBadge>
+            <UiFlex class="gap-0.5 ml-auto">
+              <UBadge color="gray" size="xs" class="whitespace-nowrap">{{ item.platform.name }}</UBadge>
+              <UBadge color="gray" size="xs" class="whitespace-nowrap">{{ item.category.name }}</UBadge>
             </UiFlex>
           </UiFlex>
         </NuxtLink>

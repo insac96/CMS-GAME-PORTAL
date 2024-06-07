@@ -129,7 +129,10 @@ const downloadAction = async (type) => {
     })
 
     downloading.value[type] = false
-    window.open(data, '_blank')
+
+    setTimeout(() => {
+      window.open(data, '_blank')
+    }, 100)
   }
   catch (e){
     downloading.value[type] = false
