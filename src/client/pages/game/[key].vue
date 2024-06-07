@@ -15,7 +15,7 @@
           <!-- Name - Info -->
           <div class="mb-2">
             <UiText weight="bold" class="sm:text-2xl text-xl">{{ game.name }}</UiText>
-            <UiText color="gray">{{ game.description }}</UiText>
+            <UiText weight="semibold" color="primary">{{ game.description }}</UiText>
           </div>
 
           <!-- Tag -->
