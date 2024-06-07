@@ -40,10 +40,10 @@
 
           <!-- Download -->
           <UiFlex wrap justify="center" class="gap-1 mb-4">
-            <UButton v-if="game.download.web" :loading="downloading.web" @click="downloadAction('web')" icon="i-bxl-internet-explorer" color="gray">Chơi ngay</UButton>
-            <UButton v-if="game.download.windows" :loading="downloading.windows" @click="downloadAction('windows')" icon="i-bxl-windows" color="blue">PC</UButton>
-            <UButton v-if="game.download.android" :loading="downloading.android" @click="downloadAction('android')" icon="i-bxl-android" color="green">Android</UButton>
-            <UButton v-if="game.download.ios" :loading="downloading.ios" @click="downloadAction('ios')" icon="i-bxl-apple" color="black">IOS</UButton>
+            <UButton v-if="game.download.web" :loading="downloading.web" @click="downloadAction('web'), openLink(game.download.web)" icon="i-bxl-internet-explorer" color="gray">Chơi ngay</UButton>
+            <UButton v-if="game.download.windows" :loading="downloading.windows" @click="downloadAction('windows'), openLink(game.download.windows)" icon="i-bxl-windows" color="blue">PC</UButton>
+            <UButton v-if="game.download.android" :loading="downloading.android" @click="downloadAction('android'), openLink(game.download.android)" icon="i-bxl-android" color="green">Android</UButton>
+            <UButton v-if="game.download.ios" :loading="downloading.ios" @click="downloadAction('ios'), openLink(game.download.ios)" icon="i-bxl-apple" color="black">IOS</UButton>
             <UButton v-if="
                 !game.download.web
                 && !game.download.windows
@@ -95,12 +95,6 @@ const downloading = ref({
   android: false,
   ios: false
 })
-const downloadLink = ref(null)
-watch(() => downloadLink.value, (val) => {
-  if(!val) return
-  window.open(val, '_blank')
-  downloadLink.value = null
-})
 
 // Meta Seo
 useSeoMeta({
@@ -112,7 +106,6 @@ useSeoMeta({
   ogImageAlt: () => game.value ? game.value.name : 'Loading...'
 })
 
-
 const slideList = computed(() => {
   if(!game.value) return []
   if(game.value.images.length == 0) {
@@ -122,6 +115,10 @@ const slideList = computed(() => {
   }
   return game.value.images
 })
+
+const openLink = (link) => {
+  window.open(link, '_blank')
+}
 
 const downloadAction = async (type) => {
   try {
@@ -135,7 +132,6 @@ const downloadAction = async (type) => {
     })
 
     downloading.value[type] = false
-    downloadLink.value = data
   }
   catch (e){
     downloading.value[type] = false
