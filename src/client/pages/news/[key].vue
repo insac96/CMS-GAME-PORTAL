@@ -1,23 +1,25 @@
 <template>
-  <div v-if="loading || !news">Loading...</div>
+  <div class="max-w-3xl mx-auto">
+    <LoadingNewsId v-if="loading || !news" />
 
-  <UiFlex v-else type="col" justify="center" class="max-w-3xl mx-auto">
-    <UiSlide :images="slideList" class="w-full mb-4" />
+    <UiFlex v-else type="col" justify="center">
+      <UiSlide :images="slideList" class="w-full mb-4" />
 
-    <div class="w-full mb-4">
-      <UiText weight="bold" class="text-xl lg:text-2xl">{{ news.title }}</UiText>
-      <UiText color="gray" class="text-md lg:text-md">{{ news.description }}</UiText>
-    </div>
+      <div class="w-full mb-4">
+        <UiText weight="bold" class="text-xl lg:text-2xl">{{ news.title }}</UiText>
+        <UiText color="gray" class="text-md lg:text-md">{{ news.description }}</UiText>
+      </div>
 
-    <div class="w-full mb-4">
-      <DataEditor :content="news.content" empty="Chưa có nội dung"></DataEditor>
-    </div>
+      <div class="w-full mb-4">
+        <DataEditor :content="news.content" empty="Chưa có nội dung"></DataEditor>
+      </div>
 
-    <UiFlex justify="between" class="mb-4 w-full">
-      <UiText size="sm" color="gray">Cập nhật lần cuối</UiText>
-      <UiText size="sm" weight="semibold">{{ useDayJs().displayDate(news.updatedAt) }}</UiText>
+      <UiFlex justify="between" class="mb-4 w-full">
+        <UiText size="sm" color="gray">Cập nhật lần cuối</UiText>
+        <UiText size="sm" weight="semibold">{{ useDayJs().displayDate(news.updatedAt) }}</UiText>
+      </UiFlex>
     </UiFlex>
-  </UiFlex>
+  </div>
 </template>
 
 <script setup>

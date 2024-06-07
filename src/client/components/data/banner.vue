@@ -4,8 +4,8 @@
     <UiText align="center" class="font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl text-3xl">{{ configStore.config.name }}</UiText>
     <UiText align="center" size="lg" color="gray" class="sm:mt-2 mt-1 tracking-tight">{{ configStore.config.description }}</UiText>
 
-    <UiFlex justify="center" class="gap-2 mt-6">
-      <UButton label="Về chúng tôi" variant="soft" size="lg" @click="navigateTo('/about')">
+    <UiFlex justify="center" class="gap-2 mt-6 mb-4" wrap>
+      <UButton label="Về chúng tôi" variant="soft" size="lg" @click="navigateTo('/about')" v-if="about">
         <template #trailing>
           <UIcon name="i-heroicons-arrow-right-20-solid" class="w-5 h-5" />
         </template>
@@ -14,11 +14,16 @@
       <UButton size="lg" color="gray" @click="modal = true">Liên hệ</UButton>
     </UiFlex>
 
+    <UiFlex justify="center">
+      <UButton label="Quyền Riêng Tư" variant="link" @click="navigateTo('/privacy')" v-if="privacy" />
+      <UButton label="Điều Khoản" variant="link" @click="navigateTo('/terms')" v-if="terms" />
+    </UiFlex>
+
     <UModal v-model="modal">
       <UCard>
         <template #header>
           <UiFlex justify="between">
-            <UiLogo />
+            <DataLogo />
             <UButton color="gray" icon="i-bx-x" square variant="ghost" :padded="false" @click="modal = false"></UButton>
           </UiFlex>
         </template>
@@ -63,6 +68,11 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  about: { type: Boolean, default: true },
+  privacy: { type: Boolean, default: false },
+  terms: { type: Boolean, default: false },
+})
 const configStore = useConfigStore()
 const contact = ref(configStore.config.contact)
 const social = ref(configStore.config.social)

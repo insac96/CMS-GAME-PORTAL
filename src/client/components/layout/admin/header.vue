@@ -10,7 +10,7 @@
       
       <UiFlex class="w-1/3 xl:justify-start justify-center">
         <NuxtLink to="/admin">
-          <UiLogo />
+          <DataLogo />
         </NuxtLink>
       </UiFlex>
       

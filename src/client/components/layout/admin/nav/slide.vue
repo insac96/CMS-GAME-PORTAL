@@ -22,7 +22,7 @@
       >
         <UiFlex class="w-full mb-6" justify="center">
           <NuxtLink to="/">
-            <UiLogo @click="open = false" />
+            <DataLogo @click="open = false" />
           </NuxtLink>
         </UiFlex>
 

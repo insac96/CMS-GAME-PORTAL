@@ -4,7 +4,7 @@
       <!-- Left -->
       <UiFlex class="mr-1">
         <!-- Logo -->
-        <NuxtLink to="/" class="mr-3"><UiLogo header/></NuxtLink>
+        <NuxtLink to="/" class="mr-3"><DataLogo header/></NuxtLink>
         <!-- Search -->
         <LayoutDefaultHeaderSearch />
       </UiFlex>

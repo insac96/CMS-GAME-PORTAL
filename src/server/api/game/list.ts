@@ -35,7 +35,7 @@ export default defineEventHandler(async (event) => {
     // List Game
     const list = await DB.Game
     .find(match)
-    .select('name key og_image')
+    .select('name key og_image play')
     .sort(sorting)
     .limit(size)
     .skip((current - 1) * size)

@@ -4,7 +4,7 @@
       <LayoutDefaultHeader />
     </header>
 
-    <main class="pt-4">
+    <main>
       <UContainer class="p-2">
         <slot></slot>
 

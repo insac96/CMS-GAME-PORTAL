@@ -1,5 +1,7 @@
 <template>
-  <ServiceNewsList title="Tin Tức" />
+  <div class="max-w-4xl mx-auto">
+    <ServiceNewsList title="Tin Tức" sub="Tổng hợp tất cả tin tức" :size="9" />
+  </div>
 </template>
 
 <script setup>

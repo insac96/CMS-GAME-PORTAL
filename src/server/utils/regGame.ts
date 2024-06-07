@@ -23,6 +23,8 @@ export default async (username: string, password: string, type: string) => {
       const result = await axios.post(url, send)
       const data = result.data
       if(data.code == 200){
+        // console.log(send)
+        // console.log(data)
         return true
       }
       else {

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="content" v-html="content" class="ql-editor UiEditorContent"></div>
-    <UiEmpty :title="empty" v-else></UiEmpty>
+    <DataEmpty :title="empty" v-else></DataEmpty>
   </div>
 </template>
 

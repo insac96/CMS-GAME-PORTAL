@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-4xl mx-auto">
-    <div v-if="loading || !game">Loading...</div>
-    
+    <LoadingGameId v-if="loading || !game" />
+
     <div v-else>
       <!-- Info -->
       <div class="grid grid-cols-12 gap-4 mb-4">
@@ -69,7 +69,7 @@
         <UDivider label="Mô Tả Chi Tiết" class="mb-4" />
         <div class="w-full">
           <DataEditor v-if="game.content" :content="game.content" empty="Chưa có nội dung"></DataEditor>
-          <UiEmpty v-else icon="i-bx-book-content" title="Chưa có nội dung"></UiEmpty>
+          <DataEmpty v-else icon="i-bx-book-content" title="Chưa có nội dung"></DataEmpty>
         </div>
       </div>
 

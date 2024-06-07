@@ -20,7 +20,7 @@
       :width="props.imgW"
       :height="props.imgH"
       quality="100" 
-      format="webp" 
+      :format="format" 
       :fit="fit" 
       :loading="!!preload ? 'eager' : 'lazy'"
       :preload="preload"
@@ -49,6 +49,11 @@ const props = defineProps({
 
 const loading = ref(true)
 const onLoad = () => loading.value = false
+const format = computed(() => {
+  if(!props.src) return 'webp'
+  if(props.src.match(/\.(gif)$/) != null) return 'gif'
+  return 'webp'
+})
 </script>
   
   

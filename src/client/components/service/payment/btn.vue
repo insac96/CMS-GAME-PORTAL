@@ -6,7 +6,7 @@
       <UCard>
         <template #header>
           <UiFlex justify="between">
-            <UiLogo />
+            <DataLogo />
             <UButton color="gray" icon="i-bx-x" square variant="ghost" :padded="false" @click="modal = false"></UButton>
           </UiFlex>
         </template>
