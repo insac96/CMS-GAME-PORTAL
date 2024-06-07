@@ -95,8 +95,12 @@ const downloading = ref({
   android: false,
   ios: false
 })
-const downloadLink = ref(undefined)
-watch(() => downloadLink.value, (val) => window.open(val, '_blank'))
+const downloadLink = ref(null)
+watch(() => downloadLink.value, (val) => {
+  if(!val) return
+  window.open(val, '_blank')
+  downloadLink.value = null
+})
 
 // Meta Seo
 useSeoMeta({
