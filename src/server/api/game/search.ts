@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
         { short_name: { $regex : key, $options : 'i' }},
       ]
     })
-    .select('name short_name key os category')
+    .select('name short_name key platform category')
     .populate({ path: 'platform', select: 'name key' })
     .populate({ path: 'category', select: 'name key' })
     .limit(10)
